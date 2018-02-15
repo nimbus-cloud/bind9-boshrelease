@@ -19,6 +19,10 @@ properties:
     description: "ACL (possible semi-colon delimited) to allow AXFR zone transfers from"
     default: "none"
 
+  bind9.forward.zones:
+    description: "Map of forward DNS zone names to their BIND configuration file contents"
+    default: {}
+
   bind9.master.zones:
     description: "Map of DNS zone names to their BIND configuration file contents"
     default: {}
@@ -29,3 +33,17 @@ properties:
   bind9.recursion.allow_from:
     description: "List of IPs or CIDRs to allow recursive queries from. If recursion is enabled, localhost and localnets will always be allowed"
     default: []
+
+  bind9.options:
+    description: "Key value pair of additional settings"
+    default: ~
+  
+  bind9.allow_update:
+    description: "Key value pair of domains that can be updated via Dynamic DNS."
+    example: "domain.com: keyname"
+    default: "none"
+  
+  bind9.tsig_keys:
+    description: "Key value pair of key name and hmac-md5 hash"
+    example: "name: hash"
+    default: ~
