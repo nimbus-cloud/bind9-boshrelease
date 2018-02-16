@@ -14,7 +14,15 @@ properties:
   bind9.slave.master:
     description: "IP address of the master BIND9 nameserver"
   bind9.slave.zones:
-    description: "List of zones to transfer from the master"
+    description: "List of zones to transfer from the master with optional overrides for each zone. Currently only the master can be overridden per-zone"
+    example: |
+      slave:
+        zones:
+        #No overrides. Use defaults
+        - foo.com
+        #Override the master only
+        - bar.com:
+            master: 1.2.3.4
   bind9.slave.allow_notify:
     description: "ACL (possible semi-colon delimited) to allow AXFR zone transfers from"
     default: "none"
@@ -27,5 +35,9 @@ properties:
     default: []
 
   bind9.options:
-    description: "Key value pair of additional settings"
-    default: ~
+    description: "Map of additional options"
+    default: {}
+
+  bind9.forward.zones:
+    description: "Forward zones in forward only mode,e.g. {name: zone1, forwarders: [1.1.1.1, 1.1.1.2]}"
+    default: {}
