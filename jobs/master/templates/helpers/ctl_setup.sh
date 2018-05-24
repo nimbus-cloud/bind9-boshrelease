@@ -43,7 +43,7 @@ done
 
 # Setup log, run and tmp folders
 
-export RUN_DIR=/var/vcap/sys/run/$JOB_NAME
+export RUN_DIR=/var/vcap/store/$JOB_NAME
 export LOG_DIR=/var/vcap/sys/log/$JOB_NAME
 export TMP_DIR=/var/vcap/sys/tmp/$JOB_NAME
 export STORE_DIR=/var/vcap/store/$JOB_NAME
