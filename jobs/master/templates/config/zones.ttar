@@ -1,6 +1,6 @@
-========================== 0644 /var/vcap/store/master/all.json
+========================== 0644 /var/vcap/store/master/data/all.json
 <%= properties.to_json %>
 <% properties.bind9.master.zones.to_h.each do |domain, config| %>
-========================== 0644 /var/vcap/store/master/<%= domain %>.db
+========================== 0644 /var/vcap/store/master/data/<%= domain %>.db
 <%= config.data %>
 <% end %>
