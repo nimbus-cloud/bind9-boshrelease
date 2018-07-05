@@ -1,23 +1,21 @@
-update:
-  canaries: 1
-  max_in_flight: 50
-  canary_watch_time: 1000-30000
-  update_watch_time: 1000-30000
-  serial: false
+---
+name: bind9
 
-jobs:
+instance_groups:
   - name: master
-    templates:
-    - { release: bind9, name: master  }
+    azs:  [z1]
+
+    stemcell: default
+    vm_type: default
+    networks:
+      - name: default
+
     instances: 1
-    persistent_disk: 0
-    resource_pool: named
-    networks: (( param "please set networks" ))
-    properties:
-      bind9:
-        master:
-          slaves: (( grab jobs.slave.networks.named.static_ips ))
-          allow_transfer: (( grab networks.named.subnets[0].range ))
+    jobs:
+      - name:    master
+        release: bind9
+        properties:
+          network: 10.0.0.0/16
           zones:
             foo.bl: |+
               $TTL 1h
@@ -51,20 +49,34 @@ jobs:
               12.0.0  IN PTR ns2.foo.bl.
               42.0.0  IN PTR bar.foo.bl.
 
-  - name: slave
-    templates:
-    - { release: bind9, name: slave }
-    instances: 2
-    persistent_disk: 0
-    resource_pool: named
-    networks: (( param "please set networks" ))
-    properties:
-      bind9:
-        slave:
-          master: (( grab jobs.master.networks.named.static_ips[0] ))
-          allow_notify: (( grab networks.named.subnets[0].range ))
-          zones:
-            - foo.bl
-            - 10.in-addr.arpa
 
-networks: (( param "please set networks" ))
+  - name: slave
+    azs:  [z2]
+
+    stemcell: default
+    vm_type: default
+    networks:
+      - name: default
+
+    instances: 2
+    jobs:
+    - { release: bind9, name: slave }
+
+
+stemcells:
+- alias:   default
+  os:      ubuntu-trusty
+  version: latest
+
+update:
+  canaries: 1
+  canary_watch_time: 1000-120000
+  max_in_flight: 50
+  serial: false
+  update_watch_time: 1000-120000
+
+releases:
+- name: bind9
+  version: latest
+  # url will go here...
+  # sha will go here...

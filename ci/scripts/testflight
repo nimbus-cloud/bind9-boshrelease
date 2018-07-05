@@ -42,8 +42,7 @@ bosh -n create release
 bosh -n upload release --rebase || echo "Continuing..."
 
 header "Deploying to BOSH-lite..."
-./templates/make_manifest warden
-bosh -n deploy
+bosh -n deploy manifests/bind9.yml
 
 if [[ -n ${TEST_ERRAND} ]]; then
 	header "Running '${TEST_ERRAND}' validation errand"

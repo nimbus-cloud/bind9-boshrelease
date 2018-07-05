@@ -2,6 +2,7 @@
 name: slave
 packages:
   - bind9
+
 templates:
   bin/ctl: bin/ctl
   bin/monit_debugger: bin/monit_debugger
@@ -10,34 +11,22 @@ templates:
   helpers/ctl_utils.sh: helpers/ctl_utils.sh
   config/slave.conf: config/slave.conf
 
-properties:
-  bind9.slave.master:
-    description: "IP address of the master BIND9 nameserver"
-  bind9.slave.zones:
-    description: "List of zones to transfer from the master with optional overrides for each zone. Currently only the master can be overridden per-zone"
-    example: |
-      slave:
-        zones:
-        #No overrides. Use defaults
-        - foo.com
-        #Override the master only
-        - bar.com:
-            master: 1.2.3.4
-  bind9.slave.allow_notify:
-    description: "ACL (possible semi-colon delimited) to allow AXFR zone transfers from"
-    default: "none"
+provides:
+  - name: slave-dns
+    type: slave-dns
 
-  bind9.recursion.forwarders:
+consumes:
+  - name: master-dns
+    type: master-dns
+
+properties:
+  recursion.forwarders:
     description: "List of DNS servers to forward recursive queries on to. If not specified, recursion is disabled"
     default: []
-  bind9.recursion.allow_from:
+  recursion.allow_from:
     description: "List of IPs or CIDRs to allow recursive queries from. If recursion is enabled, localhost and localnets will always be allowed"
     default: []
 
-  bind9.options:
+  options:
     description: "Map of additional options"
-    default: {}
-
-  bind9.forward.zones:
-    description: "Forward zones in forward only mode,e.g. {name: zone1, forwarders: [1.1.1.1, 1.1.1.2]}"
     default: {}
