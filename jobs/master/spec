@@ -4,14 +4,10 @@ packages:
   - bind9
 
 templates:
-  bin/ctl: bin/ctl
-  bin/ttar: bin/ttar
-  bin/monit_debugger: bin/monit_debugger
-  data/properties.sh.erb: data/properties.sh
-  helpers/ctl_setup.sh: helpers/ctl_setup.sh
-  helpers/ctl_utils.sh: helpers/ctl_utils.sh
+  bin/master:         bin/master
+  bin/ttar:           bin/ttar
   config/master.conf: config/master.conf
-  config/zones.ttar: config/zones.ttar
+  config/zones.ttar:  config/zones.ttar
 
 provides:
   - name: master-dns

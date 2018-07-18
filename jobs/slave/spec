@@ -4,11 +4,7 @@ packages:
   - bind9
 
 templates:
-  bin/ctl: bin/ctl
-  bin/monit_debugger: bin/monit_debugger
-  data/properties.sh.erb: data/properties.sh
-  helpers/ctl_setup.sh: helpers/ctl_setup.sh
-  helpers/ctl_utils.sh: helpers/ctl_utils.sh
+  bin/slave:         bin/slave
   config/slave.conf: config/slave.conf
 
 provides:
