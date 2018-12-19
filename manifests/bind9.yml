@@ -77,6 +77,6 @@ update:
 
 releases:
 - name: bind9
-  version: 1.1.0
-  url: https://github.com/cloudfoundry-community/bind9-boshrelease/releases/download/v1.1.0/bind9-1.1.0.tgz
-  sha1: de206f01fd129cda4a848722e840dbc0172ff9b2
+  version: 1.1.1
+  url: https://github.com/cloudfoundry-community/bind9-boshrelease/releases/download/v1.1.1/bind9-1.1.1.tgz
+  sha1: 20c490ddab0fb801ab02de29ba56ed1bc6ffedde
