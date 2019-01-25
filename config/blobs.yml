@@ -1,4 +1,4 @@
-bind9/bind-9.13.2.tar.gz:
-  size: 8547111
-  object_id: 9b03a889-1032-4900-4110-03d083f7f518
-  sha: bd9c44cd1a19aa100ebd1f9fe94ce47e47e0eca7
+bind9/bind-9.13.5.tar.gz:
+  size: 6309308
+  object_id: c4b0cccd-cae7-4dcf-4405-80bb7b4215f2
+  sha: 8c01018e6928e9117cd8e0cdd464efe3b68894c5

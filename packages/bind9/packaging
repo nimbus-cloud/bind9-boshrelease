@@ -1,8 +1,12 @@
 #!/bin/bash
 set -eu
+export PYTHONPATH=""
+source /var/vcap/packages/python-2.7/bosh/compile.env
 
 cpus=$(grep -c ^processor /proc/cpuinfo)
-version=9.13.2
+version=9.13.5
+
+pip install ply
 
 # latest versions available at https://ftp.isc.org/isc/bind/
 tar -xzvf bind9/bind-${version}.tar.gz

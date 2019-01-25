@@ -1,5 +1,6 @@
 ---
 name: bind9
-dependencies: []
+dependencies:
+  - python-2.7
 files:
  - bind9/*
