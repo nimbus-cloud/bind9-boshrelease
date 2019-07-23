@@ -15,7 +15,7 @@ instance_groups:
       - name:    master
         release: bind9
         properties:
-          network: 10.0.0.0/16
+          network: 10.0.0.0/8
           zones:
             foo.bl: |+
               $TTL 1h
