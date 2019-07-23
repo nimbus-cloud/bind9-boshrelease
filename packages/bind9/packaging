@@ -1,9 +1,8 @@
 #!/bin/bash
 set -eu
-exec 2>&1 | tee ${BOSH_INSTALL_TARGET}/build.log
 
 cpus=$(grep -c ^processor /proc/cpuinfo)
-version=9.14.0
+version=9.15.2
 
 echo "Installing bind9 v${version} to ${BOSH_INSTALL_TARGET}"
 echo "using $cpus CPUs for parallel builds"
