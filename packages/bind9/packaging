@@ -1,15 +1,23 @@
-set -e # exit immediately if a simple command exits with a non-zero status
-set -u # report the usage of uninitialized variables
+#!/bin/bash
+set -eu
 
-# Detect # of CPUs so make jobs can be parallelized
-CPUS=$(grep -c ^processor /proc/cpuinfo)
- # Available variables
-# $BOSH_COMPILE_TARGET - where this package & spec'd source files are available
-# $BOSH_INSTALL_TARGET - where you copy/install files to be included in package
-export HOME=/var/vcap
+cpus=$(grep -c ^processor /proc/cpuinfo)
+version=9.15.2
 
-tar -xzvf bind9/bind-9.10.2-P3.tar.gz
-cd bind-9.10.2-P3
-./configure --without-libjson --prefix=${BOSH_INSTALL_TARGET}
-make
+echo "Installing bind9 v${version} to ${BOSH_INSTALL_TARGET}"
+echo "using $cpus CPUs for parallel builds"
+echo
+
+# latest versions available at https://ftp.isc.org/isc/bind/
+tar -xzvf bind9/bind-${version}.tar.gz
+cd bind-${version}
+./configure \
+  --without-libjson \
+  --without-python \
+  --prefix=${BOSH_INSTALL_TARGET}
+make -j$cpus
 make install
+
+echo
+echo "DONE"
+exit 0

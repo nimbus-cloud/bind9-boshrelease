@@ -1,0 +1,29 @@
+name: bind9
+version: 1.1.2
+commit_hash: a5e742c
+uncommitted_changes: false
+jobs:
+- name: master
+  version: e0e28eac721c2e1466f58a5b82fe725a9ee5705d
+  fingerprint: e0e28eac721c2e1466f58a5b82fe725a9ee5705d
+  sha1: c5d11a49fc7cc5f35b00bc0dd45395650e269056
+- name: slave
+  version: ffad5fc94f438711f6f8cf0a4a4374708f28b99c
+  fingerprint: ffad5fc94f438711f6f8cf0a4a4374708f28b99c
+  sha1: f5127a76290f73a6f75de3c9c82e7952140d7363
+packages:
+- name: bind9
+  version: 93fab554e210d7cf83c6bed8d27c77ab3339a97f
+  fingerprint: 93fab554e210d7cf83c6bed8d27c77ab3339a97f
+  sha1: 8a113cf908fc927ca792cca995b883a94085d6f4
+  dependencies:
+  - python-2.7
+- name: python-2.7
+  version: 7063c9f4e43bf49374c2f6cc6c2f74a5467f2298
+  fingerprint: 7063c9f4e43bf49374c2f6cc6c2f74a5467f2298
+  sha1: bd130315766a7641dbd20aa328d16f084cc17965
+  dependencies: []
+license:
+  version: bc026dbd2e576cc5bf2acbd3bfe10f626c3abba8
+  fingerprint: bc026dbd2e576cc5bf2acbd3bfe10f626c3abba8
+  sha1: 2e9390c057472f473900690b82fccbd2b147b4bc

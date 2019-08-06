@@ -2,38 +2,46 @@
 name: master
 packages:
   - bind9
+
 templates:
-  bin/ctl: bin/ctl
-  bin/ttar: bin/ttar
-  bin/monit_debugger: bin/monit_debugger
-  data/properties.sh.erb: data/properties.sh
-  helpers/ctl_setup.sh: helpers/ctl_setup.sh
-  helpers/ctl_utils.sh: helpers/ctl_utils.sh
+  bin/master:         bin/master
+  bin/ttar:           bin/ttar
   config/master.conf: config/master.conf
-  config/zones.ttar: config/zones.ttar
+  config/zones.ttar:  config/zones.ttar
+
+provides:
+  - name: master-dns
+    type: master-dns
+    properties:
+      - network
+      - zones
+      - forward
+
+consumes:
+  - name: slave-dns
+    type: slave-dns
 
 properties:
-  bind9.master.slaves:
-    description: "List of IPs of the slave nameservers"
-  bind9.master.allow_transfer:
+  network:
     description: "ACL (possible semi-colon delimited) to allow AXFR zone transfers from"
-    default: "none"
+    default: none
 
-  bind9.master.zones:
+  zones:
     description: "Map of DNS zone names to their BIND configuration file contents"
     default: {}
 
-  bind9.recursion.forwarders:
+  forward:
+    description: "Forward zones in forward only mode,e.g. {name: zone1, forwarders: [1.1.1.1, 1.1.1.2]}"
+    default: {}
+
+  recursion.forwarders:
     description: "List of DNS servers to forward recursive queries on to. If not specified, recursion is disabled"
     default: []
-  bind9.recursion.allow_from:
+  recursion.allow_from:
     description: "List of IPs or CIDRs to allow recursive queries from. If recursion is enabled, localhost and localnets will always be allowed"
     default: []
 
-  bind9.options:
+  bind_options:
     description: "Map of additional options"
     default: {}
 
-  bind9.forward.zones:
-    description: "Forward zones in forward only mode,e.g. {name: zone1, forwarders: [1.1.1.1, 1.1.1.2]}"
-    default: {}

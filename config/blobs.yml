@@ -1,5 +1,4 @@
----
-bind9/bind-9.10.2-P3.tar.gz:
-  object_id: fe273373-9ecc-4479-aabd-ed6fb41d33c4
-  sha: ab362f2632db923accd1b29e37b8fffa66d21d8d
-  size: 8469831
+bind9/bind-9.15.2.tar.gz:
+  size: 6303402
+  object_id: 81e78972-7183-4b3b-5c1f-da99cf72ead1
+  sha: 7582a70474b83d4aaa632b58d7475f1deac97efd
