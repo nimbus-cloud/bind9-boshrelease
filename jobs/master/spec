@@ -34,6 +34,15 @@ properties:
     description: "Forward zones in forward only mode,e.g. {name: zone1, forwarders: [1.1.1.1, 1.1.1.2]}"
     default: {}
 
+  allow_update:
+    description: "Key value pair of domains that can be updated via Dynamic DNS."
+    example: "domain.com: keyname"
+    default: {}
+
+  tsig_keys:
+    description: "Key value pair of key name and hmac-md5 hash"
+    default: ~
+
   recursion.forwarders:
     description: "List of DNS servers to forward recursive queries on to. If not specified, recursion is disabled"
     default: []
